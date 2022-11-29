@@ -1,19 +1,47 @@
 <template>
   <div>
-    <div><input @keyup="getInfoFilms(), concatArrays(),getInfoTv()" v-model="nomeFilm" type="text" /></div>
-    <div
+    <div>
+      <input
+        @keyup="getInfoFilms(), concatArrays(), getInfoTv()"
+        v-model="nomeFilm"
+        type="text"
+      />
+    </div>
+    <section class="d-flex flex-wrap">
+       <div
       class="card"
       v-for="(element, index) in dataAll"
       :key="index"
       :singleItem="element"
     >
+      <div><img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt=""></div>
       <div>{{ element.title }}</div>
       <div>{{ element.original_title }}</div>
-      <div v-if="element.original_language == 'en'"><img class="flag" src="../assets/img/Flag_of_the_United_Kingdom.svg" alt="flag of the UK"></div>
-      <div v-else-if="element.original_language == 'it'"><img class="flag" src="../assets/img/Flag_of_Italy.svg" alt="flag of Italy"></div>
-      <div v-else><img class="flag" src="../assets/img/PACE_flag_(without_text).svg" alt="Peace Flag"></div>
-      <div>{{element.vote_average}}</div>
-    </div>
+      <div v-if="element.original_language == 'en'">
+        <img
+          class="flag"
+          src="../assets/img/Flag_of_the_United_Kingdom.svg"
+          alt="flag of the UK"
+        />
+      </div>
+      <div v-else-if="element.original_language == 'it'">
+        <img
+          class="flag"
+          src="../assets/img/Flag_of_Italy.svg"
+          alt="flag of Italy"
+        />
+      </div>
+      <div v-else>
+        <img
+          class="flag"
+          src="../assets/img/PACE_flag_(without_text).svg"
+          alt="Peace Flag"
+        />
+      </div>
+      <div>{{ element.vote_average }}</div>
+    </div> 
+    </section>
+    
   </div>
 </template>
 
@@ -23,7 +51,7 @@ export default {
   data() {
     return {
       dataFilms: [],
-      dataTv:[],
+      dataTv: [],
       dataAll: [],
     };
   },
@@ -47,15 +75,15 @@ export default {
           this.dataTv = response.data.results;
         });
     },
-    concatArrays(){
-        this.dataAll = this.dataFilms.concat(this.dataTv);
-    }
+    concatArrays() {
+      this.dataAll = this.dataFilms.concat(this.dataTv);
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.flag{
-    width: 30px;
+.flag {
+  width: 30px;
 }
 </style>
