@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div><input @keyup="getInfo()" v-model="nomeFilm" type="text" /></div>
+    <div><input @keyup="getInfoFilms(), concatArrays(),getInfoTv()" v-model="nomeFilm" type="text" /></div>
     <div
       class="card"
-      v-for="(element, index) in dataFilms"
+      v-for="(element, index) in dataAll"
       :key="index"
       :singleItem="element"
     >
@@ -23,11 +23,13 @@ export default {
   data() {
     return {
       dataFilms: [],
+      dataTv:[],
+      dataAll: [],
     };
   },
   mounted() {},
   methods: {
-    getInfo() {
+    getInfoFilms() {
       axios
         .get(
           `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.nomeFilm}`
@@ -36,6 +38,18 @@ export default {
           this.dataFilms = response.data.results;
         });
     },
+    getInfoTv() {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.nomeFilm}`
+        )
+        .then((response) => {
+          this.dataTv = response.data.results;
+        });
+    },
+    concatArrays(){
+        this.dataAll = this.dataFilms.concat(this.dataTv);
+    }
   },
 };
 </script>
