@@ -9,7 +9,9 @@
     >
       <div>{{ element.title }}</div>
       <div>{{ element.original_title }}</div>
-      <div>{{element.original_language}}</div>
+      <div v-if="element.original_language == 'en'"><img class="flag" src="../assets/img/Flag_of_the_United_Kingdom.svg" alt="flag of the UK"></div>
+      <div v-else-if="element.original_language == 'it'"><img class="flag" src="../assets/img/Flag_of_Italy.svg" alt="flag of Italy"></div>
+      <div v-else><img class="flag" src="../assets/img/PACE_flag_(without_text).svg" alt="Peace Flag"></div>
       <div>{{element.vote_average}}</div>
     </div>
   </div>
@@ -39,4 +41,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.flag{
+    width: 30px;
+}
 </style>
