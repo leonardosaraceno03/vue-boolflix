@@ -16,6 +16,7 @@
     >
       <div><img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt=""></div>
       <div>{{ element.title }}</div>
+      <div>{{element.name}}</div>
       <div>{{ element.original_title }}</div>
       <div v-if="element.original_language == 'en'">
         <img
@@ -38,8 +39,10 @@
           alt="Peace Flag"
         />
       </div>
-      <div>{{ element.vote_average }}</div>
+      <div>{{ parseInt(element.vote_average / 2) }}</div>
+      <!--<div>{{newRate}}</div>-->
     </div> 
+    
     </section>
     
   </div>
@@ -50,13 +53,17 @@ import axios from "axios";
 export default {
   data() {
     return {
+      
       dataFilms: [],
       dataTv: [],
       dataAll: [],
+      nomeFilm: ''
+
     };
   },
   mounted() {},
   methods: {
+    
     getInfoFilms() {
       axios
         .get(
@@ -69,7 +76,7 @@ export default {
     getInfoTv() {
       axios
         .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.nomeFilm}`
+          `https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.nomeFilm}`
         )
         .then((response) => {
           this.dataTv = response.data.results;
