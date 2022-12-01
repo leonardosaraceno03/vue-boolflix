@@ -8,43 +8,87 @@
       />
     </div>
     <section class="d-flex flex-wrap">
-       <div
-      class="card"
-      v-for="(element, index) in dataAll"
-      :key="index"
-      :singleItem="element"
-    >
-      <div><img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt=""></div>
-      <div>{{ element.title }}</div>
-      <div>{{element.name}}</div>
-      <div>{{ element.original_title }}</div>
-      <div v-if="element.original_language == 'en'">
-        <img
-          class="flag"
-          src="../assets/img/Flag_of_the_United_Kingdom.svg"
-          alt="flag of the UK"
-        />
+      <div
+        class="card"
+        v-for="(element, index) in dataAll"
+        :key="index"
+        :singleItem="element"
+      >
+        <div>
+          <img
+            :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"
+            alt=""
+          />
+        </div>
+        <div>{{ element.title }}</div>
+        <div>{{ element.name }}</div>
+        <div>{{ element.original_title }}</div>
+        <div v-if="element.original_language == 'en'">
+          <img
+            class="flag"
+            src="../assets/img/Flag_of_the_United_Kingdom.svg"
+            alt="flag of the UK"
+          />
+        </div>
+        <div v-else-if="element.original_language == 'it'">
+          <img
+            class="flag"
+            src="../assets/img/Flag_of_Italy.svg"
+            alt="flag of Italy"
+          />
+        </div>
+        <div v-else>
+          <img
+            class="flag"
+            src="../assets/img/PACE_flag_(without_text).svg"
+            alt="Peace Flag"
+          />
+        </div>
+
+        <div v-if="parseInt(element.vote_average / 2) == 5">
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+        </div>
+        <div v-else-if="parseInt(element.vote_average / 2) == 4">
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+        </div>
+        <div v-else-if="parseInt(element.vote_average / 2) == 3">
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+        </div>
+        <div v-else-if="parseInt(element.vote_average / 2) == 2">
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+        </div>
+        <div v-else-if="parseInt(element.vote_average / 2) == 1">
+          <img src="../assets/img/star-fill.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+        </div>
+        <div v-else-if="parseInt(element.vote_average / 2) == 0">
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+          <img src="../assets/img/star.svg" alt="" />
+        </div>
       </div>
-      <div v-else-if="element.original_language == 'it'">
-        <img
-          class="flag"
-          src="../assets/img/Flag_of_Italy.svg"
-          alt="flag of Italy"
-        />
-      </div>
-      <div v-else>
-        <img
-          class="flag"
-          src="../assets/img/PACE_flag_(without_text).svg"
-          alt="Peace Flag"
-        />
-      </div>
-      <div>{{ parseInt(element.vote_average / 2) }}</div>
-      <!--<div>{{newRate}}</div>-->
-    </div> 
-    
     </section>
-    
   </div>
 </template>
 
@@ -53,17 +97,14 @@ import axios from "axios";
 export default {
   data() {
     return {
-      
       dataFilms: [],
       dataTv: [],
       dataAll: [],
-      nomeFilm: ''
-
+      nomeFilm: "",
     };
   },
   mounted() {},
   methods: {
-    
     getInfoFilms() {
       axios
         .get(
