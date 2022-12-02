@@ -14,84 +14,87 @@
         :key="index"
         :singleItem="element"
       >
-        <div>
+        <div class="front-card">
           <img
             :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"
             alt=""
           />
         </div>
-        <div>{{ element.title }}</div>
-        <div>{{ element.name }}</div>
-        <div>{{ element.original_title }}</div>
-        <div v-if="element.original_language == 'en'">
-          <img
-            class="flag"
-            src="../assets/img/Flag_of_the_United_Kingdom.svg"
-            alt="flag of the UK"
-          />
-        </div>
-        <div v-else-if="element.original_language == 'it'">
-          <img
-            class="flag"
-            src="../assets/img/Flag_of_Italy.svg"
-            alt="flag of Italy"
-          />
-        </div>
-        <div v-else>
-          <img
-            class="flag"
-            src="../assets/img/PACE_flag_(without_text).svg"
-            alt="Peace Flag"
-          />
-        </div>
+        <div class="back-card" >
+          <div>{{ element.title }}</div>
+          <div>{{ element.name }}</div>
+          <div>{{ element.original_title }}</div>
+          <div v-if="element.original_language == 'en'">
+            <img
+              class="flag"
+              src="../assets/img/Flag_of_the_United_Kingdom.svg"
+              alt="flag of the UK"
+            />
+          </div>
+          <div v-else-if="element.original_language == 'it'">
+            <img
+              class="flag"
+              src="../assets/img/Flag_of_Italy.svg"
+              alt="flag of Italy"
+            />
+          </div>
+          <div v-else>
+            <img
+              class="flag"
+              src="../assets/img/PACE_flag_(without_text).svg"
+              alt="Peace Flag"
+            />
+          </div>
 
-        <div v-if="parseInt(element.vote_average / 2) == 5">
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-        </div>
-        <div v-else-if="parseInt(element.vote_average / 2) == 4">
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-        </div>
-        <div v-else-if="parseInt(element.vote_average / 2) == 3">
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-        </div>
-        <div v-else-if="parseInt(element.vote_average / 2) == 2">
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-        </div>
-        <div v-else-if="parseInt(element.vote_average / 2) == 1">
-          <img src="../assets/img/star-fill.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-        </div>
-        <div v-else-if="parseInt(element.vote_average / 2) == 0">
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
-          <img src="../assets/img/star.svg" alt="" />
+          <div v-if="parseInt(element.vote_average / 2) == 5">
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+          </div>
+          <div v-else-if="parseInt(element.vote_average / 2) == 4">
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+          </div>
+          <div v-else-if="parseInt(element.vote_average / 2) == 3">
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+          </div>
+          <div v-else-if="parseInt(element.vote_average / 2) == 2">
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+          </div>
+          <div v-else-if="parseInt(element.vote_average / 2) == 1">
+            <img src="../assets/img/star-fill.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+          </div>
+          <div v-else-if="parseInt(element.vote_average / 2) == 0">
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+            <img src="../assets/img/star.svg" alt="" />
+          </div>
         </div>
       </div>
     </section>
   </div>
 </template>
 
+        
 <script>
 import axios from "axios";
 export default {
@@ -133,5 +136,42 @@ export default {
 <style scoped lang="scss">
 .flag {
   width: 30px;
+}
+.card {
+  position: relative;
+  
+  transition: transform 1000ms;
+  transform-style: preserve-3d;
+  width: calc((100vw/4) - 10px);
+}
+.card:hover {
+  transform: rotateY(180deg);
+}
+.card > .front-card > img {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+.front-card {
+  height: 100%;
+}
+.card:hover img {
+  display: none;
+}
+.card:hover .front-card {
+  display: none;
+}
+.back-card {
+  transform: rotateY(180deg);
+  width: calc((100vw/4) - 10px);
+  height: 100%;
+}
+.card:hover .back-card {
+  display: block;
+  background-color: black;
+  opacity: 0.8;
+}
+.back-card {
+  display: none;
 }
 </style>
